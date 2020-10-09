@@ -1,3 +1,7 @@
+//Enable environment variables using dotenv
+const dotenv = require('dotenv');
+dotenv.config();
+
 // Setup empty JS object to act as endpoint for all routes
 let  projectData = {};
 
@@ -34,7 +38,7 @@ app.get('/all', function (req, res) {
 app.post('/analyze', analyze);
 
 function analyze(req, res){
-    projectData.text = req.sentence_list.text;
+    // projectData.text = req.sentence_list.text;
     res.end();
     console.log(projectData);
 }
