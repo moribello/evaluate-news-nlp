@@ -5,30 +5,31 @@ function handleSubmit(event) {
     let formText = document.getElementById('userText').value
     // Client.checkForName(formText)
 
-    let subURL = `https://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&of=json&txt=${formText}&model=general&lang=en`;
-//get API Data using getAPIData function
-    getAPIData(subURL)
-      .then(function (APItemp) {
-        postData('http://localhost:8080/analyze')
+//new section to get API Key
+const getAPIKey = async() =>{
+    const request = await fetch('/test')
+    try{
+        const calledData = await request.json();
+        console.log(`API key = ${calledData.key}`);
+        let fullURL = `https://api.meaningcloud.com/sentiment-2.1?key=${calledData.key}&of=json&txt=${formText}&model=general&lang=en`;
+        console.log(fullURL);
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+console.log("Attempting to fetch API key...")
+getAPIKey();
+
+
+//end of new section to get API key
+
+
 
 // update UI - commented out for now
           // .then(function () {
           //   updateUI()
           // })
-      })
-  }
-//get API DATA function called above
-const getAPIData = async (subURL) => {
-    const response = await fetch(subURL)
-    console.log(subURL);
-    console.log(response);
-    try {
-      const newData = await response.json();
-      return newData;
-    } catch (error) {
-      console.log("error", error); //deal with error
-    }
-};
 
 // Async postData function called during button click event
 const postData = async (url = '', data = {}) => {
@@ -48,5 +49,5 @@ const postData = async (url = '', data = {}) => {
       console.log('Error during POST: ', error); //signal error during POST attempt;
     }
   }
-
+}
 export { handleSubmit }
