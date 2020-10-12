@@ -7,12 +7,10 @@ function handleSubmit(event) {
 
 //new section to get API Key
 const getAPIKey = async() =>{
-    const request = await fetch('/test')
+    const request = await fetch('/getAPIdata')
     try{
-        const calledData = await request.json();
-        console.log(`API key = ${calledData.key}`);
-        let fullURL = `https://api.meaningcloud.com/sentiment-2.1?key=${calledData.key}&of=json&txt=${formText}&model=general&lang=en`;
-        console.log(fullURL);
+        const calledData = request.json();
+        console.log(`API data = ${calledData.text}`);
     }
     catch(error){
         console.log(error);

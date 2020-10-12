@@ -24,10 +24,24 @@ app.listen(8080, function () {
 })
 
 let apiKey = {};
-app.get('/test', function (req, res) {
+app.get('/getAPIdata', function (req, res) {
     apiKey.key = process.env.API_KEY;
     console.log(`Sending API key: ${apiKey.key}`);
-    res.send(apiKey);
+    let fullURL = `https://api.meaningcloud.com/sentiment-2.1?key=${calledData.key}&of=json&txt=${formText}&model=general&lang=en`;
+    const postRequest = fetch(fullURL, {method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+    },
+      body: JSON.stringify(data),
+  });
+  try{
+      const apiData = postRequest.json();
+      res.send(apiData);
+  }
+  catch (error) {
+      console.log('Error during POST: ', error); //signal error during POST attempt;
+    }
 })
 
 //GET route
@@ -36,12 +50,3 @@ app.get('/all', function (req, res) {
     res.send(projectData);
     console.log(projectData);
 })
-
-//POST route
-app.post('/analyze', analyze);
-
-function analyze(req, res){
-    // projectData.text = req.sentence_list.text;
-    res.end();
-    console.log(projectData);
-}
