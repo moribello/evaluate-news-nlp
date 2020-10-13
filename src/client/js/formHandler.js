@@ -2,34 +2,16 @@ function handleSubmit(event) {
     event.preventDefault()
 
     // check what text was put into the form field
-    let formText = document.getElementById('userText').value
-    // Client.checkForName(formText)
+    let formText = document.getElementById('userText').value;
 
-//new section to get API Key
-const getAPIKey = async() =>{
-    const request = await fetch('/getAPIdata')
-    try{
-        const calledData = request.json();
-        console.log(`API data = ${calledData.text}`);
+//New section to send text to server
+    const sendText = async(formText) =>{
+        console.log("initializing sendText functions")
     }
-    catch(error){
-        console.log(error);
-    }
-}
-console.log("Attempting to fetch API key...")
-getAPIKey();
 
+//end of new section to send text to server
 
-//end of new section to get API key
-
-
-
-// update UI - commented out for now
-          // .then(function () {
-          //   updateUI()
-          // })
-
-// Async postData function called during button click event
+// postData function used to send data to server
 const postData = async (url = '', data = {}) => {
     const postRequest = await fetch(url, {
         method: 'POST',
@@ -46,6 +28,11 @@ const postData = async (url = '', data = {}) => {
     catch (error) {
       console.log('Error during POST: ', error); //signal error during POST attempt;
     }
-  }
 }
+  //end of postData function
+
+}
+
+sendText(formText);
+
 export { handleSubmit }

@@ -2,8 +2,14 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-// Setup empty JS object to act as endpoint for all routes
+// Setup empty JS objects to act as endpoints for all routes
 let projectData = {};
+let apiKey = {};
+
+// Set up values for URL, etc.
+const baseURL = 'https://api.meaningcloud.com/sentiment-2.1?key='
+const model = 'general' //Note - if you want to get fancy you can try and change this in the DOM. For now, leave it as is.
+const lang = 'en' //Same as with model - leave the language for now.
 
 // Require express to run server and routes
 const express = require('express') //include Express installation
@@ -13,35 +19,22 @@ app.use(express.static('dist')) //set up distribution folder
 
 console.log(__dirname)
 
-app.get('/', function (req, res) {
-    // res.sendFile('dist/index.html')
-    res.sendFile(path.resolve('src/client/views/index.html'))
-})
-
 // designates what port the app will listen to for incoming requests
 app.listen(8080, function () {
     console.log('Example app listening on port 8080!')
 })
 
-let apiKey = {};
-app.get('/getAPIdata', function (req, res) {
+app.get('/getAPIdata', function (formText) {
+    //retrieve API key
     apiKey.key = process.env.API_KEY;
-    console.log(`Sending API key: ${apiKey.key}`);
-    let fullURL = `https://api.meaningcloud.com/sentiment-2.1?key=${calledData.key}&of=json&txt=${formText}&model=general&lang=en`;
-    const postRequest = fetch(fullURL, {method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-    },
-      body: JSON.stringify(data),
-  });
-  try{
-      const apiData = postRequest.json();
-      res.send(apiData);
-  }
-  catch (error) {
-      console.log('Error during POST: ', error); //signal error during POST attempt;
-    }
+    console.log("API key retrieved!")
+    console.log(formText);
+    let fullURL = `${baseURL}${apiKey.key}&of=json&txt=${formText}&model=${model}&lang=${lang}`;
+    console.log(fullURL);
+    //Get 'fullText' value from formHandler.js
+    //Combine API key, 'fullText', and the rest of the url
+    //Make URL call
+    //Handle JSON file
 })
 
 //GET route
