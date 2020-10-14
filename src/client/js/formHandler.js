@@ -4,20 +4,32 @@ function handleSubmit(event) {
     // check what text was put into the form field
     let formText = document.getElementById('userText').value
 
-//new section to get API Key
-const getAPIData = async() =>{
-    const request = await fetch(`/getAPIdata/${formText}`)
-    console.log("awaiting data...")
-    try{
-        const calledData = request.json();
-        console.log(`API data = ${calledData}`);
-    }
-    catch(error){
-        console.log(error);
-    }
-}
-console.log("Attempting to fetch API key...")
-getAPIData();
+//new section to get API Data
+// fetch('http://localhost:8080/getAPIdata', {
+fetch('/getAPIdata', {    
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({text: formText})
+    })
+    .then(res => res.json())
+    .then(function(res) {
+        console.log(res);
+    })
+// const getAPIData = async() =>{
+//     const request = await fetch(`/getAPIdata/${formText}`)
+//     try{
+//         const calledData = request.json();
+//         console.log(`API data = ${calledData}`);
+//     }
+//     catch(error){
+//         console.log(error);
+//     }
+// }
+// console.log("Attempting to fetch API key...")
+// getAPIData();
 
 
 //end of new section to get API key
