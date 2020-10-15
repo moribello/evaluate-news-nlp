@@ -25,7 +25,6 @@ fetch('http://localhost:8080/getAPIdata', {
         document.getElementById('agree').innerHTML = agrees;
         document.getElementById('conf').innerHTML = res.confidence;
         document.getElementById('irony').innerHTML = res.irony;
-        document.getElementById('text').innerHTML = res.text;
     })
 
 // Object

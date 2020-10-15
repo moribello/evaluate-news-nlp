@@ -43,7 +43,6 @@ app.post('/getAPIdata', async function (req, res) {
     projectData.subjectivity = data.subjectivity;
     projectData.agreement = data.agreement;
     projectData.irony = data.irony;
-    projectData.text = data.sentence_list.text; //new
     res.send(projectData);
     console.log(projectData);
 });
