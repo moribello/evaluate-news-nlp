@@ -36,11 +36,14 @@ app.post('/getAPIdata', async function (req, res) {
     console.log(fullURL);
     let response = await fetch(fullURL);
     let data = await response.json();
+    console.log(data);
+    projectData.model = data.model; //new
     projectData.polarity = data.score_tag;
     projectData.confidence = data.confidence;
     projectData.subjectivity = data.subjectivity;
     projectData.agreement = data.agreement;
     projectData.irony = data.irony;
+    projectData.text = data.sentence_list.text; //new
     res.send(projectData);
     console.log(projectData);
 });

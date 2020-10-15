@@ -1,3 +1,10 @@
+%textLabel {
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    font-weight: bold;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -11,4 +18,54 @@ main {
 section {
     max-width: 800px;
     margin: 50px auto;
+    h1 {
+        font-size: 1.2em;
+    }
+}
+
+#results{
+    display: grid;
+    grid-template-columns: 35% 1fr;
+    grid-template-rows: 30px 30px 30px 30px 100px;
+    grid-gap: 5px;
+    grid-template-areas:
+        "al agree"
+        "cl conf"
+        "il irony"
+        "tl tl"
+        "text text";
+    margin-left: 10px;
+}
+
+.textLabel{
+
+}
+#alabel{
+    @extend %textLabel;
+    grid-area: al;
+}
+
+#clabel{
+    @extend %textLabel;
+    grid-area: cl;
+}
+#ilabel{
+    @extend %textLabel;
+    grid-area: il;
+}
+#tlabel{
+    @extend %textLabel;
+    grid-area: tl;
+}
+#agree{
+    grid-area: agree;
+}
+#conf{
+    grid-area: conf;
+}
+#irony{
+    grid-area: irony;
+}
+#text{
+    grid-area: text;
 }
