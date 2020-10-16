@@ -1,12 +1,16 @@
 function handleSubmit(event) {
     event.preventDefault()
 
-    // check what text was put into the form field
+    // retrieve text entered into the form field
     let formText = document.getElementById('userText').value
 
     //validate input text
-    console.log("attempting to run validateText script...");
     Client.validateText(formText)
+
+    //Checks for returned value
+    if (Client.validateText(formText) !== true){
+        alert("Please enter text in the text field")
+    } else {
 
 //new section to get API Data
 fetch('http://localhost:8080/getAPIdata', {
@@ -30,13 +34,6 @@ fetch('http://localhost:8080/getAPIdata', {
         document.getElementById('conf').innerHTML = res.confidence;
         document.getElementById('irony').innerHTML = res.irony;
     })
-
-// Object
-// agreement: "AGREEMENT"
-// confidence: "100"
-// irony: "NONIRONIC"
-// polarity: "NONE"
-// subjectivity: "OBJECTIVE
-
+}//bracket to close if / else statement
 }//bracket to close function
 export { handleSubmit }
