@@ -4,6 +4,10 @@ function handleSubmit(event) {
     // check what text was put into the form field
     let formText = document.getElementById('userText').value
 
+    //validate input text
+    console.log("attempting to run validateText script...");
+    Client.validateText(formText)
+
 //new section to get API Data
 fetch('http://localhost:8080/getAPIdata', {
         method: 'POST',
