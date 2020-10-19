@@ -12,7 +12,7 @@ function handleSubmit(event) {
         alert("Please enter text in the text field")
     } else {
 
-//new section to get API Data
+//new section to have server request API data and return it
 fetch('http://localhost:8080/getAPIdata', {
         method: 'POST',
         credentials: 'same-origin',

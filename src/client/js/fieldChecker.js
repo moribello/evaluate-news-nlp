@@ -1,5 +1,5 @@
 function validateText(inputText) {
-    // console.log(`Running validateText on ${inputText}`);
+    //checks for empty string
     if (inputText==""){
         return false;
     } else {

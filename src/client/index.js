@@ -1,4 +1,3 @@
-// import { checkForName } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
 import { validateText } from './js/fieldChecker'
 import './styles/resets.scss'
@@ -11,7 +10,3 @@ export{
     handleSubmit,
     validateText
 }
-
-// console.log(checkForName);
-
-// alert("I EXIST")

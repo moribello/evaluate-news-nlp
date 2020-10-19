@@ -36,7 +36,7 @@ app.post('/getAPIdata', async function (req, res) {
     console.log(fullURL);
     let response = await fetch(fullURL);
     let data = await response.json();
-    console.log(data);
+    // console.log(data);
     projectData.model = data.model; //new
     projectData.polarity = data.score_tag;
     projectData.confidence = data.confidence;
@@ -44,5 +44,5 @@ app.post('/getAPIdata', async function (req, res) {
     projectData.agreement = data.agreement;
     projectData.irony = data.irony;
     res.send(projectData);
-    console.log(projectData);
+    // console.log(projectData);
 });
