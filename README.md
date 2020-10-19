@@ -31,8 +31,8 @@ This project had several requirements, all to be performed using JavaScript:
     - Pass data from the returned JSON file to the client side
     - Display the returned sentiment data on the client side via the DOM
 
-    In addition, the text sent by the user is verified so
-    an empty string is not passed to the server.
+In addition, the text sent by the user is verified so
+an empty string is not passed to the server.
 
 User Input:
 -----------
@@ -69,4 +69,4 @@ Client Side (Returned Data and Updating DOM)
 Once the server returns data the *formHandler.js* file
 updates the DOM so the user can see the results; for
 ease in user comprehension the *formHandler.js* script
-changes the "agreement" value to a yes / no value. 
+changes the "agreement" value to a yes / no value.
